@@ -18,7 +18,7 @@ const getCsrfAndCookie = async (): Promise<ICsrfCookie> => {
       .split('<input name="authenticity_token" type="hidden" value=')[1]
       .split(" ")[0]
       .replace(/"/g, "");
-    const cookie = headers["set-cookie"][1].split(";")[0];
+    const cookie = headers["set-cookie"]?.[1]?.split(";")[0] ?? "";
 
     return { csrf_token, cookie };
   } catch (error: any) {
